@@ -1,8 +1,7 @@
 from app import admin, db
-from app.admin_views.forms import BTCCodeForm, SquareSetupForm, \
-        GAForm, EmailSetupForm, IssoForm, ThemeForm
-from app.models import User, Square, PriceLevel, ThirdPartyServices, \
-        Email, BTCPayClientStore
+# Removed unused forms for Square, Email, Isso, etc.
+from app.admin_views.forms import ThemeForm
+from app.models import User, PriceLevel, ThirdPartyServices
 from app.utils import pairing, hup_gunicorn
 from app.admin_utils.utils import isso_config
 from flask_admin import BaseView, expose
@@ -247,6 +246,17 @@ class PriceView(LibrePatronModelView):
     list_template = 'admin/custom_list.html'
 
 
+# Import our new persona admin views
+try:
+    from app.admin_views.persona_admin import PersonaConfigView, VideoContentView
+    
+    # Add persona configuration views
+    admin.add_view(PersonaConfigView(name='Persona Config', endpoint='personaconfig'))
+    admin.add_view(VideoContentView(name='Video Content', endpoint='videocontent'))
+except ImportError:
+    pass
+
+# Original views (simplified)
 admin.add_view(UserView(User, db.session, name='Manage Users'))
 admin.add_view(PriceView(
     PriceLevel,

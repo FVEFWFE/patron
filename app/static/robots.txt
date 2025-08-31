@@ -1,0 +1,44 @@
+# Dex Volkov Private Content Vault
+# Block all search engines and crawlers
+
+User-agent: *
+Disallow: /
+Crawl-delay: 86400
+
+# Specific blocks for major search engines
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: facebookexternalhit
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+User-agent: LinkedInBot
+Disallow: /
+
+User-agent: WhatsApp
+Disallow: /
+
+User-agent: Applebot
+Disallow: /
+
+# Block archiving bots
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: Wayback Machine
+Disallow: /

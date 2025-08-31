@@ -4,7 +4,8 @@ from copy import deepcopy
 from datetime import datetime, timedelta
 from flask import Flask, redirect, url_for
 from flask_admin import Admin, AdminIndexView, expose
-from flask_apscheduler import APScheduler
+# Scheduler removed - not needed for static content vault
+# from flask_apscheduler import APScheduler
 from flask_blogging_patron import BloggingEngine, SQLAStorage
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager, current_user
@@ -31,7 +32,7 @@ blog_engine = BloggingEngine()
 login = LoginManager()
 login.login_view = 'auth.login'
 login.login_message_category = 'info'
-scheduler = APScheduler()
+# scheduler = APScheduler()
 
 
 # register Flask-Admin
@@ -68,19 +69,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     app.jinja_env.globals['THEME_FILE'] = 'themes/' + \
         app.config['THEME'] + '.min.css'
-    # check for Isso config file. If none exists, make a fake one.
-    # The isso container always needs a config file to read, even if garbage.
-    file = app.config['ISSO_CONFIG_PATH']
-    if not os.path.isfile(file):
-        isso_config = ConfigParser()
-        isso_config['default'] = {}
-        isso_config['default']['dbpath'] = \
-            'var/lib/db/comments.db'
-        isso_config['default']['host'] = \
-            'http://localhost:5000/'
-        with open(file, 'w') as configfile:
-            isso_config.write(configfile)
-        app.logger.info('Isso dummy configuration success.')
+    # Comments system completely removed
     bootstrap.init_app(app)
     db.init_app(app)
     with app.app_context():
@@ -90,12 +79,7 @@ def create_app(config_class=Config):
     login.init_app(app)
     admin.init_app(app)
     blog_engine.init_app(app, sql_storage)
-    global SCHEDULER_HOUR
-    global SCHEDULER_MINUTE
-    SCHEDULER_HOUR = app.config.get('SCHEDULER_HOUR')
-    SCHEDULER_MINUTE = app.config.get('SCHEDULER_MINUTE')
-    scheduler.init_app(app)
-    scheduler.start()
+    # Scheduler removed - not needed for static content
 
     # deepcopy auto-generated flask_blogging bp, then delete it
     global temp_bp
@@ -130,13 +114,7 @@ def create_app(config_class=Config):
             app.logger.info('Dummy last renewal date created.')
 
     # pre-first request loads
-    @app.before_first_request
-    def load_ga():
-        from app.models import ThirdPartyServices
-        ga = ThirdPartyServices.query.filter_by(name='ga').first()
-        if ga is not None:
-            app.config['BLOGGING_GOOGLE_ANALYTICS'] = ga.code
-            app.logger.info('GA configuration success.')
+    # Google Analytics removed for privacy
 
     @app.before_first_request
     def load_theme():
@@ -148,11 +126,7 @@ def create_app(config_class=Config):
                 theme.code + '.min.css'
             app.logger.info('Theme configuration success.')
 
-    @app.before_first_request
-    def load_tasks():
-        from app import tasks  # noqa: F401
-        app.logger.info(f'Next renewal time: \
-                {scheduler._scheduler.get_jobs()[0].next_run_time}')
+    # Tasks removed - not needed for static content
 
     return app
 

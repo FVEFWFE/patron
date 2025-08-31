@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Privacy -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="{{ config.SEO_CONFIG.meta_description }}">
+    <meta property="og:title" content="{{ config.PERSONA.name }}">
+    <meta property="og:description" content="{{ config.PERSONA.description }}">
+    <meta property="og:type" content="website">
+    
+    <title>{% block title %}{{ config.PERSONA.name }} - Private Content Vault{% endblock %}</title>
+    
+    <!-- Self-hosted fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/inter.css') }}">
+    
+    <!-- Custom Dark Theme -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom-dark.css') }}">
+    
+    <!-- Video Player CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plyr.css') }}">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="/" class="navbar-brand">{{ config.PERSONA.logo_text }}</a>
+                <div class="navbar-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#free-videos" class="nav-link">Free Videos</a>
+                    <a href="#mastermind" class="nav-link">Mastermind</a>
+                    <a href="#book" class="nav-link">My Book</a>
+                    {% if current_user.is_authenticated and current_user.role == 'admin' %}
+                    <a href="{{ url_for('admin.index') }}" class="nav-link" target="_blank">Admin</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alerts">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    <button class="alert-close">&times;</button>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <p>&copy; 2024 {{ config.PERSONA.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Self-hosted Video Player JS -->
+    <script src="{{ url_for('static', filename='js/plyr.js') }}"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

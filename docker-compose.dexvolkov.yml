@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dexvolkov
+    container_name: dexvolkov-vault
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=sqlite:////app/instance/app.db
+      - SECRET_KEY=${SECRET_KEY:-change-this-to-a-random-string}
+      - FLASK_ENV=production
+      - SITEURL=https://vault.example.com
+    volumes:
+      - ./app/static/videos:/app/app/static/videos
+      - ./app/static/images:/app/app/static/images
+      - ./persona_config.json:/app/persona_config.json
+      - ./instance:/app/instance
+    networks:
+      - vault-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: dexvolkov-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./app/static:/usr/share/nginx/html/static:ro
+    depends_on:
+      - web
+    networks:
+      - vault-network
+
+networks:
+  vault-network:
+    driver: bridge

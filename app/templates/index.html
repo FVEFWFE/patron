@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>{{ config.CONTENT_CONFIG.hero_headline }}</h1>
+        <p class="hero-subtitle">{{ config.CONTENT_CONFIG.hero_subheadline }}</p>
+        {% if intro_video %}
+        <div class="hero-video">
+            <video id="intro-player" controls>
+                <source src="{{ intro_video.url }}" type="video/mp4">
+            </video>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Free Preview Videos Section -->
+<section id="free-videos" class="section">
+    <div class="container">
+        <h2 class="section-title">{{ config.CONTENT_CONFIG.free_videos_title }}</h2>
+        <div class="video-grid">
+            {% for video in free_videos %}
+            <div class="video-card" data-video-id="{{ video.id }}">
+                <div class="video-thumbnail">
+                    {% if video.thumbnail %}
+                    <img src="{{ video.thumbnail }}" alt="{{ video.title }}">
+                    {% else %}
+                    <div class="video-placeholder"></div>
+                    {% endif %}
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">{{ video.title }}</h3>
+                    <p class="video-description">{{ video.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- The Mastermind (Fake Paywall) Section -->
+<section id="mastermind" class="mastermind">
+    <div class="container">
+        <div class="mastermind-header">
+            <h2>{{ config.CONTENT_CONFIG.premium_videos_title }}</h2>
+            <div class="mastermind-price">{{ config.CONTENT_CONFIG.mastermind_price }}</div>
+            <p class="mastermind-currency">{{ config.CONTENT_CONFIG.mastermind_currency }}</p>
+            <div class="mastermind-status">{{ config.CONTENT_CONFIG.mastermind_status }}</div>
+        </div>
+        
+        <div class="premium-videos">
+            {% for title in config.CONTENT_CONFIG.premium_video_titles %}
+            <div class="premium-video-item">
+                <h4 class="premium-video-title">{{ title }}</h4>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="mastermind-cta">
+            <button class="btn btn-disabled" disabled>Access Restricted</button>
+            <p class="mastermind-note">Membership applications are currently closed. Check back later.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Book Section -->
+<section id="book" class="book-section">
+    <div class="container">
+        <div class="book-container">
+            <div class="book-mockup">
+                <img src="{{ url_for('static', filename='images/book-mockup.png') }}" alt="{{ config.PERSONA.book_title }}">
+            </div>
+            <div class="book-info">
+                <h2>{{ config.PERSONA.book_title }}</h2>
+                <p class="book-description">{{ config.PERSONA.book_description }}</p>
+                <a href="{{ config.PERSONA.book_link }}" class="btn" target="_blank">
+                    Download FREE PDF + Audiobook
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2 class="section-title">Member Testimonials</h2>
+        <div class="testimonial-grid">
+            {% for testimonial in config.CONTENT_CONFIG.testimonials %}
+            <div class="testimonial-card">
+                <p class="testimonial-text">{{ testimonial.quote }}</p>
+                <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Video Modal -->
+<div id="video-modal" class="video-modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <video id="modal-player" controls></video>
+    </div>
+</div>
+{% endblock %}

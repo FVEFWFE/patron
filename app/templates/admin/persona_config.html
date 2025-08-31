@@ -1,0 +1,101 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <h2>Persona Configuration</h2>
+    <p>Configure the persona settings for the content vault.</p>
+    
+    <form method="POST" action="{{ url_for('personaconfig.update') }}" class="form">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Persona Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="persona_name">Persona Name</label>
+                    <input type="text" class="form-control" id="persona_name" name="persona_name" 
+                           value="{{ config.persona.name }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="persona_tagline">Tagline</label>
+                    <input type="text" class="form-control" id="persona_tagline" name="persona_tagline" 
+                           value="{{ config.persona.tagline }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="logo_text">Logo Text</label>
+                    <input type="text" class="form-control" id="logo_text" name="logo_text" 
+                           value="{{ config.persona.logo_text }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="book_title">Book Title</label>
+                    <input type="text" class="form-control" id="book_title" name="book_title" 
+                           value="{{ config.persona.book_title }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="book_link">Book Link</label>
+                    <input type="url" class="form-control" id="book_link" name="book_link" 
+                           value="{{ config.persona.book_link }}" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Theme Settings</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="accent_color">Accent Color</label>
+                    <input type="color" class="form-control" id="accent_color" name="accent_color" 
+                           value="{{ config.theme.accent_color }}" style="width: 100px;">
+                </div>
+                
+                <div class="form-group">
+                    <label for="primary_bg">Primary Background</label>
+                    <input type="color" class="form-control" id="primary_bg" name="primary_bg" 
+                           value="{{ config.theme.primary_bg }}" style="width: 100px;">
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Content Settings</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="hero_headline">Hero Headline</label>
+                    <input type="text" class="form-control" id="hero_headline" name="hero_headline" 
+                           value="{{ config.content.hero_headline }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mastermind_price">Mastermind Price</label>
+                    <input type="text" class="form-control" id="mastermind_price" name="mastermind_price" 
+                           value="{{ config.content.mastermind_price }}" required>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Configuration</button>
+        <a href="{{ url_for('admin.index') }}" class="btn btn-default">Cancel</a>
+    </form>
+</div>
+
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .panel {
+        margin-bottom: 30px;
+    }
+    input[type="color"] {
+        height: 40px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
