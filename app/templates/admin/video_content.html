@@ -1,0 +1,53 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="container-fluid">
+    <h2>Video Content Management</h2>
+    <p>Manage the premium video titles displayed in the mastermind section.</p>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Premium Video Titles (Fake Paywall)</h3>
+        </div>
+        <div class="panel-body">
+            <form method="POST" action="{{ url_for('videocontent.update_premium_titles') }}">
+                <div class="form-group">
+                    <label for="premium_titles">Premium Video Titles (one per line)</label>
+                    <textarea class="form-control" id="premium_titles" name="premium_titles" 
+                              rows="25" style="font-family: monospace;">{% for title in premium_titles %}{{ title }}
+{% endfor %}</textarea>
+                    <p class="help-block">Enter one video title per line. These are display-only titles for the fake paywall section.</p>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Update Titles</button>
+                <a href="{{ url_for('admin.index') }}" class="btn btn-default">Cancel</a>
+            </form>
+        </div>
+    </div>
+    
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Free Videos</h3>
+        </div>
+        <div class="panel-body">
+            <p>Free videos are managed through the file system. Place video files in:</p>
+            <code>/app/static/videos/</code>
+            <p class="help-block">Update the routes_new.py file to add new free videos to the rotation.</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    textarea {
+        resize: vertical;
+    }
+    .panel {
+        margin-bottom: 30px;
+    }
+    code {
+        padding: 2px 4px;
+        background: #f5f5f5;
+        border-radius: 3px;
+    }
+</style>
+{% endblock %}

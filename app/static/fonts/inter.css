@@ -1,0 +1,61 @@
+/* Inter Font - Self Hosted */
+/* This would normally include @font-face declarations for locally hosted Inter font files */
+/* For now, using system fonts as fallback */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Inter Regular'), local('Inter-Regular'),
+       local('-apple-system'), local('BlinkMacSystemFont'),
+       local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Inter Medium'), local('Inter-Medium'),
+       local('-apple-system'), local('BlinkMacSystemFont'),
+       local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Inter SemiBold'), local('Inter-SemiBold'),
+       local('-apple-system'), local('BlinkMacSystemFont'),
+       local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Inter Bold'), local('Inter-Bold'),
+       local('-apple-system'), local('BlinkMacSystemFont'),
+       local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local('Inter ExtraBold'), local('Inter-ExtraBold'),
+       local('-apple-system'), local('BlinkMacSystemFont'),
+       local('Segoe UI'), local('Helvetica Neue'), local('Arial');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('JetBrains Mono'), local('Courier New'), local('monospace');
+}

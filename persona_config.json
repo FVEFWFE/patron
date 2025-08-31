@@ -1,0 +1,76 @@
+{
+  "persona": {
+    "name": "Dex Volkov",
+    "tagline": "From Goldman Sachs to $47k/month in Thailand",
+    "description": "Former Goldman Sachs analyst turned philosopher-trader. Successful GPU arbitrage reseller and author of 'The AI Kill Switch'.",
+    "book_title": "The AI Kill Switch",
+    "book_link": "https://theaikillswitch.com",
+    "book_description": "A groundbreaking exploration of AI risk and the future of humanity. Learn the strategies that could save us from technological extinction.",
+    "logo_text": "DEX VOLKOV"
+  },
+  "theme": {
+    "primary_bg": "#0A0A0A",
+    "secondary_bg": "#1A1A1A",
+    "card_bg": "#242424",
+    "primary_text": "#E0E0E0",
+    "secondary_text": "#A0A0A0",
+    "accent_color": "#00D4FF",
+    "accent_hover": "#00A8CC",
+    "border_color": "#333333",
+    "success_color": "#10B981",
+    "warning_color": "#F59E0B",
+    "error_color": "#EF4444"
+  },
+  "content": {
+    "hero_headline": "From Goldman Sachs to $47k/month in Thailand",
+    "hero_subheadline": "Learn the GPU arbitrage strategies that transformed a burned-out analyst into a location-independent philosopher-trader",
+    "mastermind_price": "$399.99",
+    "mastermind_currency": "Bitcoin Only",
+    "mastermind_status": "MEMBERSHIP FULL",
+    "free_videos_title": "Free Preview Videos",
+    "premium_videos_title": "The Mastermind Vault",
+    "testimonials": [
+      {
+        "quote": "Dex's insights on GPU arbitrage changed my entire perspective on modern trading. Made $12k my first month.",
+        "author": "@bitcoinwhale"
+      },
+      {
+        "quote": "The philosophical depth combined with practical strategies is unmatched. This is the future of trading education.",
+        "author": "@techphilosopher"
+      },
+      {
+        "quote": "Finally, someone who understands both the technical and existential aspects of the AI revolution.",
+        "author": "@gpu_maximalist"
+      }
+    ],
+    "premium_video_titles": [
+      "The Goldman Exit Strategy: Why I Left a $400k Job",
+      "GPU Arbitrage Fundamentals: Finding 10x Opportunities",
+      "The Thailand Setup: Building a Remote Trading Empire",
+      "Bitcoin Maximalism: Why Everything Else is Noise",
+      "AI Risk Assessment: Trading the Apocalypse",
+      "Dark Pool Strategies for GPU Markets",
+      "The Philosophy of Profit: Nietzsche Meets Wall Street",
+      "Advanced Arbitrage: Cross-Border GPU Flipping",
+      "Building Anonymous Payment Networks",
+      "The $47k Month: Complete System Breakdown",
+      "Psychological Warfare in High-Stakes Trading",
+      "Escaping the Matrix: Financial Independence Through GPUs",
+      "The Sovereign Individual Playbook",
+      "Risk Management for Black Swan Events",
+      "Creating Untraceable Digital Identities",
+      "GPU Mining vs Trading: The Ultimate Comparison",
+      "The Art of Market Manipulation (Legal Methods)",
+      "Building Your First $100k in Crypto",
+      "Advanced OPSEC for Traders",
+      "The Future of AI: Investment Thesis 2024-2030"
+    ]
+  },
+  "seo": {
+    "robots_txt": "User-agent: *\nDisallow: /",
+    "noindex": true,
+    "nofollow": true,
+    "meta_description": "Private content vault. Members only.",
+    "og_image": "/static/images/og-image.jpg"
+  }
+}

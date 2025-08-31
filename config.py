@@ -2,36 +2,39 @@ from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 import os
 from os.path import abspath, join
 import shelve
+import json
 
 basedir = abspath(os.path.dirname(__file__))
 
+# Load persona configuration
+with open(join(basedir, 'persona_config.json'), 'r') as f:
+    PERSONA_CONFIG = json.load(f)
+
 
 class Config(object):
-    BLOGGING_SITENAME = os.environ.get('SITENAME') or 'LibrePatron'
+    # Persona Configuration
+    PERSONA = PERSONA_CONFIG['persona']
+    THEME_CONFIG = PERSONA_CONFIG['theme']
+    CONTENT_CONFIG = PERSONA_CONFIG['content']
+    SEO_CONFIG = PERSONA_CONFIG['seo']
+    
+    BLOGGING_SITENAME = PERSONA['name']
     BLOGGING_SITEURL = os.environ.get('SITEURL') or 'https://example.com'
     BUTTON_MAP = {'submit': 'primary'}
     SERVER_NAME = os.environ.get('VIRTUAL_HOST')
     BLOGGING_URL_PREFIX = '/updates'
     BLOGGING_BRANDURL = os.environ.get('BRANDURL')
     BLOGGING_TWITTER_USERNAME = os.environ.get('TWITTER')
+    # Google Analytics removed for privacy
     BLOGGING_GOOGLE_ANALYTICS = None
     BLOGGING_PERMISSIONS = True
     BLOGGING_PERMISSIONNAME = 'admin'
     BLOGGING_PLUGINS = None
     BLOGGING_ALLOW_FILE_UPLOAD = True
     BLOGGING_ESCAPE_MARKDOWN = False
-    ISSO_CONFIG_PATH = os.environ.get('ISSO_CONFIG_PATH') or \
-        '/var/lib/config/isso.cfg'
-    COMMENTS_DB_PATH = os.environ.get('COMMENTS_DB_PATH') or \
-        '/var/lib/db/comments.db'
+    # Comments system completely disabled
     COMMENTS = False
-    COMMENTS_SUBURI = os.environ.get('COMMENTS_SUBURI') is not None
-    if COMMENTS_SUBURI:
-        COMMENTS_URL = BLOGGING_SITEURL + '/isso'
-    elif SERVER_NAME is not None:
-        COMMENTS_URL = 'https://comments.' + SERVER_NAME
-    else:
-        COMMENTS_URL = None
+    COMMENTS_URL = None
     PREFERRED_URL_SCHEME = 'https'
     if os.environ.get('SCHEDULER_HOUR') is not None:
         SCHEDULER_HOUR = int(os.environ.get('SCHEDULER_HOUR'))
@@ -55,4 +58,5 @@ class Config(object):
             'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
         }
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    THEME = 'spacelab'
+    # Custom dark theme
+    THEME = 'custom-dark'

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - {{ config.PERSONA.name }}{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+    <div class="card">
+        <h1>Privacy Policy</h1>
+        <p class="text-muted">Last updated: January 2024</p>
+        
+        <h2>Your Privacy Matters</h2>
+        <p>{{ config.PERSONA.name }} operates with a strict privacy-first approach. This vault is designed to protect both your identity and your data.</p>
+        
+        <h3>Data Collection</h3>
+        <p>We collect minimal data:</p>
+        <ul>
+            <li>No personal information is required for viewing free content</li>
+            <li>No cookies or tracking scripts are used</li>
+            <li>No third-party analytics or advertising networks</li>
+            <li>Server logs are automatically purged every 24 hours</li>
+        </ul>
+        
+        <h3>Payment Information</h3>
+        <p>All transactions are conducted exclusively through Bitcoin. We never store:</p>
+        <ul>
+            <li>Credit card information</li>
+            <li>Bank account details</li>
+            <li>Government-issued ID</li>
+            <li>Physical addresses</li>
+        </ul>
+        
+        <h3>Content Access</h3>
+        <p>This is a private content vault. Access is restricted and by invitation only. We do not share member information with any third parties.</p>
+        
+        <h3>Security</h3>
+        <p>All connections are encrypted using industry-standard protocols. Content is hosted on secure, private infrastructure with no external dependencies.</p>
+        
+        <h3>Your Rights</h3>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access content anonymously</li>
+            <li>Request deletion of any data we may have</li>
+            <li>Operate under a pseudonym</li>
+        </ul>
+        
+        <h3>Contact</h3>
+        <p>For privacy concerns, reach out through secure channels only. We do not respond to requests through conventional email.</p>
+        
+        <p class="text-muted" style="margin-top: 50px;">
+            <em>Remember: Your operational security is your responsibility. Use Tor, VPNs, and practice good OPSEC.</em>
+        </p>
+    </div>
+</div>
+{% endblock %}
